@@ -16,11 +16,12 @@ for x in range(10):
    enemyships.append(["-"] * 10)
 
 def threeship():
-   row = randint(0, 7)
-   column = randint(0, 7)
-   if playerships[row][column] == "-":
+    print("\nPlace your 3 unit long Ship\n")
+    row = int(input("Choose the Row of the Ship: ")) - 1
+    column = int(input("Choose the Column of the Ship: ")) - 1
+    if playerships[row][column] == "-":
        playerships[row][column] = "X"
-       rando = randint(0,1)
+       rando = int(input("Choose your ships orientation (type 0 for Vertical or 1 for Horizontal): "))
        if rando == 0:
            if playerships[row + 2][column] == "-" and row + 2 <= 9:
                 if playerships[row + 1][column] == "-" and row + 1 <= 9:
@@ -31,7 +32,7 @@ def threeship():
                 if playerships[row][column + 1] == "-" and column + 1 <= 9:
                     playerships[row][column + 2] = "X"
                     playerships[row][column + 1] = "X"
-   else:
+    else:
         threeship()
 
 def threeship2():
@@ -54,12 +55,13 @@ def threeship2():
         threeship2()
 
 def fourship():
-   row = randint(0, 6)
-   column = randint(0, 6)
-   if playerships[row][column] == "-" and playerships[row + 1][column] == "-" and playerships[row + 2][column] == "-" and playerships[row + 3][column] == "-":
+    print("\nPlace your 4 unit long Ship\n")
+    row = int(input("Choose the Row of the Ship: ")) - 1
+    column = int(input("Choose the Column of the Ship: ")) - 1
+    if playerships[row][column] == "-" and playerships[row + 1][column] == "-" and playerships[row + 2][column] == "-" and playerships[row + 3][column] == "-":
         if playerships[row][column + 1] == "-" and playerships[row][column + 2] == "-" and playerships[row][column + 3] == "-":
            playerships[row][column] = "X"
-           rando = randint(0,1)
+           rando = int(input("Choose your ships orientation (type 0 for Vertical or 1 for Horizontal): "))
            if rando == 0:
                if playerships[row + 2][column] == "-" and row + 2 <= 9:
                     if playerships[row + 1][column] == "-" and row + 1 <= 9:
@@ -76,7 +78,7 @@ def fourship():
                             playerships[row][column + 1] = "X"
         else:
             fourship()
-   else:
+    else:
         fourship()
 
 def fourship2():
@@ -106,12 +108,13 @@ def fourship2():
         fourship2()
 
 def twoship():
-   row = randint(0, 8)
-   column = randint(0, 8)
-   if playerships[row][column] == "-" and playerships[row + 1][column] == "-":
+    print("\nPlace your 2 unit long Ship\n")
+    row = int(input("Choose the Row of the Ship: ")) - 1
+    column = int(input("Choose the Column of the Ship: ")) - 1
+    if playerships[row][column] == "-" and playerships[row + 1][column] == "-":
         if playerships[row][column + 1] == "-":
            playerships[row][column] = "X"
-           rando = randint(0,1)
+           rando = int(input("Choose your ships orientation (type 0 for Vertical or 1 for Horizontal): "))
            if rando == 0:
                 if playerships[row + 1][column] == "-" and row + 1 <= 9:
                     playerships[row + 1][column] = "X"
@@ -120,7 +123,7 @@ def twoship():
                     playerships[row][column + 1] = "X"
         else:
             twoship()
-   else:
+    else:
         twoship()
 
 def twoship2():
@@ -141,22 +144,28 @@ def twoship2():
    else:
         twoship2()
 
-threeship()
-fourship()
-twoship()
-threeship2()
-fourship2()
-twoship2()
-
 def printboard(board):
     for row in board:
         print(" ".join(row))
 
-print("\nHere are your ships: \n")
-printboard(playerships)
-
 print("\nFor the enemy oceans board, the misses will be displayed with a '-' while hits will be marked with a 'X' and unguessed spaced will be marked with 'O'\n")
 print("For your board, your ships will be marked with an 'X' and your enemies hits will be marked with a '#' while the misses will be marked with a '+' and open spots will be shown with a '-'\n")
+
+print("\nWhen placing ships your vertical ships will orient downwards from the coordinate you pick while horizontal ships will orient to the right from the coordinate you pick.\n")
+
+printboard(playerships)
+threeship()
+print("\n")
+printboard(playerships)
+fourship()
+print("\n")
+printboard(playerships)
+twoship()
+print("\n")
+printboard(playerships)
+threeship2()
+fourship2()
+twoship2()
 
 print("\nHere is the enemy ocean, now we will start! \n")
 printboard(ocean)
